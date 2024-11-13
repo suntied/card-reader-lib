@@ -9,12 +9,11 @@
     <packaging>jar</packaging>
 
     <name>card-reader-lib</name>
-    <description>Library for reading NFC cards with ACR122U support</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>23</maven.compiler.source>
+        <maven.compiler.target>23</maven.compiler.target>
         <junit.jupiter.version>RELEASE</junit.jupiter.version>
         <mockito.version>5.14.0</mockito.version>
         <maven.compiler.plugin>3.13.0</maven.compiler.plugin>
@@ -22,7 +21,6 @@
     </properties>
 
     <dependencies>
-        <!-- JUnit 5 for unit testing -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
@@ -30,12 +28,18 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Mockito for mocking in tests -->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <version>${mockito.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.28</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -48,10 +52,6 @@
                 <configuration>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
-                    <compilerArgs>
-                        <arg>--add-modules</arg>
-                        <arg>javax.smartcardio</arg>
-                    </compilerArgs>
                 </configuration>
             </plugin>
 
