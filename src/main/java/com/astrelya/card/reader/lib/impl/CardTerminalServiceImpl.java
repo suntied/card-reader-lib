@@ -1,6 +1,5 @@
 package com.astrelya.card.reader.lib.impl;
 
-
 import com.astrelya.card.reader.lib.exception.ReaderException;
 import com.astrelya.card.reader.lib.service.CardTerminalService;
 
@@ -17,6 +16,20 @@ public class CardTerminalServiceImpl implements CardTerminalService {
             terminal.waitForCardPresent(0);
         } catch (Exception e) {
             throw new ReaderException("Error waiting card", e);
+        }
+    }
+
+    @Override
+    public void waitForCardAbsent() throws ReaderException {
+        try {
+            TerminalFactory factory = TerminalFactory.getDefault();
+            CardTerminals terminals = factory.terminals();
+            CardTerminal terminal = terminals.list().get(0);
+            while (terminal.isCardPresent()) {
+                Thread.sleep(100);
+            }
+        } catch (Exception e) {
+            throw new ReaderException("Error while waiting for card removal", e);
         }
     }
 
